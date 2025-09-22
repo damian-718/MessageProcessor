@@ -1,6 +1,7 @@
 import java.util.*;
 import java.util.stream.Collectors;
 
+
 public class NameFilter2 implements Runnable{
 
     private ArrayList<String> names = new ArrayList<>();
@@ -46,9 +47,14 @@ public class NameFilter2 implements Runnable{
     public static void main(String[] args) {
         ArrayList<String> names = new ArrayList<>(Arrays.asList("Tom", "Jerry", "Amy", "Christopher", "Max", "John"));
 
-        NameFilter2 filter = new NameFilter2(names);
-        Thread thread = new Thread(filter);
+        int chunkSize = 3;
+        for(int i = 0; i < names.size(); i += chunkSize){
+            int end = Math.min(i + chunkSize, names.size());
+            ArrayList<String> subNames = new ArrayList<>(names.subList(i, end));
+            NameFilter2 filter = new NameFilter2(subNames);
+            Thread thread = new Thread(filter);
+            thread.start();
+        }
 
-        thread.start();
     }
 }
