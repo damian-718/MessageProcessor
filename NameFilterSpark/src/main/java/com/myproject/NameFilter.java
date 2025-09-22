@@ -1,3 +1,4 @@
+package com.myproject;
 
 public class NameFilter implements Runnable{
 

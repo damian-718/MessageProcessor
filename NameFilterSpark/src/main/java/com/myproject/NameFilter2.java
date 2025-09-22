@@ -1,3 +1,5 @@
+package com.myproject;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
